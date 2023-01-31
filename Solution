@@ -11,3 +11,15 @@ WHERE salary < (
     FROM Employee
 )
 
+177. Nth Highest Salary
+CREATE FUNCTION getNthHighestSalary(N INT) RETURNS INT
+BEGIN
+SET N = N-1;
+  RETURN (
+      # Write your MySQL query statement below.
+      SELECT DISTINCT salary AS getNthHighestSalary
+      FROM Employee
+      ORDER BY salary DESC
+      LIMIT 1 OFFSET N
+  );
+END
