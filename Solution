@@ -38,3 +38,18 @@ FROM Employee a
 JOIN Employee b 
 ON a.managerId = b.ID
 WHERE a.salary > b.salary 
+
+182. Duplicate Emails
+# Write your MySQL query statement below
+# SELECT Email FROM
+# (
+#     SELECT Email, count(Email) as num
+#     from Person
+#     group by Email
+# ) as statistic
+# WHERE num > 1
+
+SELECT Email
+FROM Person
+group by Email
+having count(Email) > 1
