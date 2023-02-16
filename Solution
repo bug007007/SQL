@@ -53,3 +53,11 @@ SELECT Email
 FROM Person
 group by Email
 having count(Email) > 1
+
+183. Customers Who Never Order
+# Write your MySQL query statement below
+SELECT name AS 'Customers'
+FROM Customers 
+WHERE id NOT IN(
+    SELECT customerId FROM Orders
+)
