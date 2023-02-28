@@ -83,3 +83,9 @@ WHERE (e.departmentId, salary) IN
 DELETE p1
 FROM Person p1, Person p2
 WHERE p1.email = p2.email and p1.id > p2.id
+
+197. Rising Temperature
+# Write your MySQL query statement below
+SELECT w1.id
+FROM Weather w1, Weather w2
+WHERE w1.temperature > w2.temperature and DATEDIFF(w1.recordDate, w2.recordDate) = 1
