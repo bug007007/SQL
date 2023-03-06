@@ -96,3 +96,9 @@ SELECT player_id,
     MIN(event_date) AS first_login
 FROM Activity 
 GROUP BY player_id
+
+584. Find Customer Referee
+# Write your MySQL query statement below
+SELECT name
+FROM Customer
+Where referee_id IS NULL OR referee_id !=2
