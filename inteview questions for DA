@@ -1,0 +1,13 @@
+1.sql如何进行优化？
+a.尽量避免使用子查询 
+  e.g.SELECT * FROM t1 WHERE id (SELECT id FROM t2 WHERE name = 'chackca');
+  其子查询在Mysql5.5版本里，内部执行计划是这样：先查外表再匹配内表，而不是先查内表t2，当外表的数据很大时，查询速度会非常慢。
+  由于MySQL的优化器对于子查询的处理能力比较弱，所以不建议使用子查询，可以改写成Inner Join，之所以 join 连接效率更高，是因为 MySQL不需要在内存中创建临时表。
+  但请注意的是：优化只针对SELECT有效，对UPDATE/DELETE子查询无效，固生产环境应避免使用子查询。
+  在MariaDB10/Mysql5.6版本里，采用join关联方式对其进行了优化，这条SQL语句会自动转换为：
+  SELECT t1.* FROM t1 JOIN t2 on t1.id = t2.id
+b.用IN来替换OR,对于连续的数值，能用 between 就不要用 in 了；再或者使用连接来替换。
+  e.g. SELECT * FROM t WHERE id = 10 OR id = 20 OR id = 30; 
+     replaced by SELECT * FROM t WHERE id IN (10,20,30);
+c.读取适当的记录LIMIT M,N，而不要读多余的记录
+  
