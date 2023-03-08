@@ -10,4 +10,13 @@ b.用IN来替换OR,对于连续的数值，能用 between 就不要用 in 了；
   e.g. SELECT * FROM t WHERE id = 10 OR id = 20 OR id = 30; 
      replaced by SELECT * FROM t WHERE id IN (10,20,30);
 c.读取适当的记录LIMIT M,N，而不要读多余的记录
-  
+  MySQL 并不是跳过 offset 行，而是取 offset+N 行，然后放弃前 offset 行，返回 N 行，那当 offset 特别大的时候，效率就非常的低下，要么控制返回的总页数，要么对超过特定阈值的页数进行 SQL 改写。
+  优化的方法如下：可以取前一页的最大行数的id（将上次遍历到的最末尾的数据ID传给数据库，然后直接定位到该ID处，再往后面遍历数据），然后根据这个最大的id来限制下一页的起点。
+  e.g.select id,name from t limit 866613, 20
+     replaced by select id,name from table_name where id> 866612 limit 20
+d.禁止不必要的Order By排序
+e.总和查询可以禁止排重用union all
+  union和union all的差异主要是前者需要将结果集合并后再进行唯一性过滤操作，这就会涉及到排序，增加大量的CPU运算，加大资源消耗及延迟。
+  当然，union all的前提条件是两个结果集没有重复数据。所以一般是我们明确知道不会出现重复数据的时候才建议使用 union all 提高速度。
+
+2. xgb原理介绍一下？
