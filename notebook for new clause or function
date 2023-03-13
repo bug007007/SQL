@@ -38,6 +38,6 @@ GO
 (10 row(s) affected)
 
 The LAG Function and the LEAD Function
-LAG(expression [,offset[,default_value]]) OVER(ORDER BY columns)
-LEAD(expression [,offset[,default_value]]) OVER(ORDER BY columns)
+LAG(expression [,offset[,default_value]]) OVER(ORDER BY columns) (按照columns排列后，取expression的同一行的后offset的值)
+LEAD(expression [,offset[,default_value]]) OVER(ORDER BY columns) (按照columns排列后，取expression的同一行的前offset的值)
 https://learnsql.com/blog/lead-and-lag-functions-in-sql/
