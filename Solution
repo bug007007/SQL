@@ -122,3 +122,19 @@ SELECT class
 FROM Courses
 GROUP BY class
 HAVING Count(class) >4
+
+601. Human Traffic of Stadium
+# Write your MySQL query statement below
+SELECT id, visit_date,people  
+FROM (SELECT id, visit_date,people,
+    LEAD(people,1) OVER (order by id) as nxt,
+    LEAD(people,2) OVER (order by id) as nxt2,
+    LAG(people,1) OVER (order by id) as pre,
+    LAG(people,2) OVER (order by id) as pre2
+    FROM Stadium 
+    ) as t
+WHERE t.people >=100 and(
+    (t.nxt >=100 and t.nxt2 >=100)
+    or(t.pre >=100 and t.pre2 >=100) 
+    or(t.nxt >=100 and t.pre >=100)
+)
