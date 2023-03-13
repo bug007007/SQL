@@ -10,12 +10,12 @@ The LIMIT row_count determines the number of rows (row_count) returned by the qu
 The OFFSET offset clause skips the offset rows before beginning to return the rows.
 
 
-DENSE_RANK() 
+DENSE_RANK() ：根据指定条件和区域来分区域排列
 USE AdventureWorks2012;  
 GO  
 SELECT i.ProductID, p.Name, i.LocationID, i.Quantity  
     ,DENSE_RANK() OVER   
-    (PARTITION BY i.LocationID ORDER BY i.Quantity DESC) AS Rank  
+    (PARTITION BY i.LocationID ORDER BY i.Quantity DESC) AS Rank  （在不同的locationID里进行对quantity的排序，可以存在同数量的同一名）
 FROM Production.ProductInventory AS i   
 INNER JOIN Production.Product AS p   
     ON i.ProductID = p.ProductID  
