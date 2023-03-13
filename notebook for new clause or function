@@ -36,3 +36,8 @@ GO
 494         Paint - Silver                     4          12       5  
   
 (10 row(s) affected)
+
+The LAG Function and the LEAD Function
+LAG(expression [,offset[,default_value]]) OVER(ORDER BY columns)
+LEAD(expression [,offset[,default_value]]) OVER(ORDER BY columns)
+https://learnsql.com/blog/lead-and-lag-functions-in-sql/
