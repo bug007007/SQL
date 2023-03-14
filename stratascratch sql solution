@@ -1,1 +1,15 @@
+Most Profitable Companies
+select profits, company 
+from forbes_global_2010_2014
+order by profits DESC
+LIMIT 3
 
+Workers With The Highest Salaries
+select worker_id, 
+    first_name, 
+    last_name, 
+    salary,
+    worker_title
+from worker w
+JOIN title t ON w.worker_id = t.worker_ref_id
+WHERE salary in(select max(salary) from worker)
