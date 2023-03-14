@@ -13,3 +13,19 @@ select worker_id,
 from worker w
 JOIN title t ON w.worker_id = t.worker_ref_id
 WHERE salary in(select max(salary) from worker)
+
+Users By Average Session Time
+SELECT user_id,
+    AVG(TIMESTAMPDIFF(SECOND, load_time, exit_time)) AS 'avg'
+FROM(
+    SELECT 
+        DATE(timestamp), 
+        user_id, 
+        MAX(IF(action = 'page_load', timestamp, NULL)) as load_time,
+        MIN(IF(action = 'page_exit', timestamp, NULL)) as exit_time
+    FROM facebook_web_log
+    GROUP BY DATE(timestamp),user_id
+) AS t
+GROUP BY user_id
+HAVING avg IS NOT NULL
+
