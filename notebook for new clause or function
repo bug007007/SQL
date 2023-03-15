@@ -41,3 +41,15 @@ The LAG Function and the LEAD Function
 LAG(expression [,offset[,default_value]]) OVER(ORDER BY columns) (按照columns排列后，取expression的同一行的后offset的值)
 LEAD(expression [,offset[,default_value]]) OVER(ORDER BY columns) (按照columns排列后，取expression的同一行的前offset的值)
 https://learnsql.com/blog/lead-and-lag-functions-in-sql/
+
+The difference between two MySQL functions; DATEDIFF() and TIMESTAMPDIFF()
+DATEDIFF()	
+Requires 2 arguments.	
+Subtracts the 2nd argument from the 1st (expr1 − expr2).	
+Result is expressed as a value in days.	
+Can compare only the date value of its arguments.	
+TIMESTAMPDIFF()
+Requires 3 arguments.
+Subtracts the 2nd argument from the 3rd (expr2 − expr1).
+Result is expressed as the unit provided by the first argument.
+Can compare the date and time value of its arguments.
