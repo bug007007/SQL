@@ -60,3 +60,14 @@ SELECT id,first_name,last_name,department_id,MAX(salary) as 'max'
 FROM ms_employee_salary
 GROUP BY first_name, last_name
 ORDER BY id
+
+10285 Acceptance Rate By Date
+with a as(
+            SELECT * FROM fb_friend_requests WHERE action = 'sent'),
+     b as(
+            SELECT * FROM fb_friend_requests WHERE action = 'accepted')            
+SELECT a.date, 
+        COUNT(b.user_id_receiver) / COUNT(a.user_id_receiver) AS 'percentage_acceptance' 
+FROM a
+LEFT JOIN b USING(user_id_sender)
+GROUP BY a.date
