@@ -53,3 +53,6 @@ Requires 3 arguments.
 Subtracts the 2nd argument from the 3rd (expr2 − expr1).
 Result is expressed as the unit provided by the first argument.
 Can compare the date and time value of its arguments.
+
+WITH clause
+a WITH clause defines a temporary data set whose output is available to be referenced in subsequent queries
