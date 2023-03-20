@@ -71,3 +71,10 @@ SELECT a.date,
 FROM a
 LEFT JOIN b USING(user_id_sender)
 GROUP BY a.date
+
+10176 Bikes Last Used
+SELECT bike_number, 
+       MAX(end_time) AS 'last_used'
+FROM dc_bikeshare_q1_2012
+GROUP BY bike_number 
+ORDER BY end_time DESC
