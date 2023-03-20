@@ -78,3 +78,11 @@ SELECT bike_number,
 FROM dc_bikeshare_q1_2012
 GROUP BY bike_number 
 ORDER BY end_time DESC
+
+10159 Ranking Most Active Guests
+SELECT dense_rank() OVER ( ORDER BY sum(n_messages) DESC) as ranks,
+      id_guest,
+      SUM(n_messages) as total_messages_sent
+FROM airbnb_contacts
+GROUP BY id_guest
+ORDER BY total_messages_sent DESC
