@@ -86,3 +86,11 @@ SELECT dense_rank() OVER ( ORDER BY sum(n_messages) DESC) as ranks,
 FROM airbnb_contacts
 GROUP BY id_guest
 ORDER BY total_messages_sent DESC
+
+10156 Number Of Units Per Nationality
+SELECT nationality, 
+    COUNT(DISTINCT(unit_id)) AS apartment_count
+FROM airbnb_hosts a
+JOIN airbnb_units b USING(host_id)
+WHERE b.unit_type = 'Apartment' AND a.age < 30
+GROUP BY nationality
