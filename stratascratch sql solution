@@ -99,3 +99,13 @@ GROUP BY nationality
 SELECT COUNT(*) AS n_movies_by_abi
 FROM oscar_nominees
 WHERE nominee = 'Abigail Breslin' 
+
+10087 Find all posts which were reacted to with a heart
+solution1:
+SELECT DISTINCT(post_id), a.poster, post_text, post_keywords, post_date
+FROM facebook_reactions a
+JOIN facebook_posts b USING(post_id)
+WHERE reaction = 'heart'
+solution2:
+select * from facebook_posts
+where post_id IN (select post_id from facebook_reactions WHERE reaction = 'heart')
