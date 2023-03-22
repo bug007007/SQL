@@ -94,3 +94,8 @@ FROM airbnb_hosts a
 JOIN airbnb_units b USING(host_id)
 WHERE b.unit_type = 'Apartment' AND a.age < 30
 GROUP BY nationality
+
+10128 Count the number of movies that Abigail Breslin nominated for oscar
+SELECT COUNT(*) AS n_movies_by_abi
+FROM oscar_nominees
+WHERE nominee = 'Abigail Breslin' 
