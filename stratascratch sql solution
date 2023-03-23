@@ -109,3 +109,9 @@ WHERE reaction = 'heart'
 solution2:
 select * from facebook_posts
 where post_id IN (select post_id from facebook_reactions WHERE reaction = 'heart')
+
+10078 Find matching hosts and guests in a way that they are both of the same gender and nationality
+SELECT DISTINCT(h.host_id), g.guest_id
+FROM airbnb_hosts h
+JOIN airbnb_guests g
+ON h.nationality = g.nationality and h.gender = g.gender
